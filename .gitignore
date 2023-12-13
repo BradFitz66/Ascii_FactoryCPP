@@ -121,5 +121,3 @@ Temporary Items
 # Default build directory
 build
 inc
-vcpkg_installed
-vcpkg
