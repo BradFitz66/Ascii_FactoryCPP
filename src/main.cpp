@@ -114,6 +114,7 @@ int main(int argc, char **argv)
         registry.emplace<position>(player, 10.0f, 10.0f);
         registry.emplace<velocity>(player, 0.0f, 0.0f);
 
+        //This seems kinda ugly.
         registry.emplace<input>(player, [&](const Uint8 * keys, entt::entity e){
             velocity& vel = registry.get<velocity>(e);
             int x_negative = SDL_GetKeyboardState(NULL)[SDL_SCANCODE_LEFT]!=0 ? 1 : 0;
@@ -145,9 +146,13 @@ int main(int argc, char **argv)
             {
                 for (int x = 0; x < m.width; x++)
                 {
-                    if (m.data[y * m.width + x] >= 0.5f)
+                    if (m.data[y * m.width + x] >= 0.5f && m.data[y * m.width + x] <= 0.75f)
                     {
                         tcod::print(g_console, {x, y}, "0", WHITE, std::nullopt);
+                    }
+                    else if (m.data[y * m.width + x] >= 0.25f && m.data[y * m.width + x] <= 0.5f)
+                    {
+                        tcod::print(g_console, {x, y}, "1", WHITE, std::nullopt);
                     }
                 }
             }

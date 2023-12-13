@@ -15,13 +15,13 @@ struct velocity
     float y;
 };
 
-struct input
-{
+struct input{
+    //Allows an entity to handle it's own input
     std::function<void(const Uint8 * keys, entt::entity)> handler;
 };
 
 struct renderer{
-    //Render function that takes the entity this component is attached to as a parameter.
+    //Allows the handling of rendering on a per entity basis
     std::function<void(entt::entity)> render;
 };
 #endif
