@@ -6,12 +6,22 @@ if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
         CACHE STRING "Vcpkg toolchain file")
 endif()
 
-find_package(FastNoise2 CONFIG REQUIRED) # FastNoise2
 
 project(
     libtcod-vcpkg-template  # Project name, change this as needed.
     LANGUAGES CXX
 )
+#If debug, use FastNoiseD.lib, otherwise just use FastNoise.lib
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    message("CMAKE_BUILD_TYPE is Debug")
+    set(FASTNOISE_LIB deps/FastNoiseD.lib)
+else()
+    message("CMAKE_BUILD_TYPE is Release")
+    set(FASTNOISE_LIB deps/FastNoise.lib)
+endif()
+
+#Add to cmake prefix path
+set(CMAKE_PREFIX_PATH ${FASTNOISE_LIB} ${CMAKE_PREFIX_PATH})
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")  # Keep all runtime files in one directory.
 
@@ -21,6 +31,7 @@ file(
     ${PROJECT_SOURCE_DIR}/src/*.cpp
     ${PROJECT_SOURCE_DIR}/src/*.hpp
 )
+
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
 # Ensure the C++17 standard is available.
@@ -40,13 +51,18 @@ else()
     target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra)
 endif()
 
+
 find_package(SDL2 CONFIG REQUIRED)
 find_package(libtcod CONFIG REQUIRED)
+set(FastNoise_DIR "${CMAKE_CURRENT_SOURCE_DIR}/submodules")
+find_package(FastNoise2 CONFIG REQUIRED)
+
 target_link_libraries(
     ${PROJECT_NAME}
     PRIVATE
         SDL2::SDL2
         SDL2::SDL2main
         libtcod::libtcod
-        FastNoiseD
+        ../deps/FastNoise
 )
+#The cmake command to build debug version is:

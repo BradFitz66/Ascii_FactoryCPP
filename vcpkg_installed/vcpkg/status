@@ -1,0 +1,106 @@
+Package: vcpkg-cmake
+Version: 2023-05-04
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 6205794a014d534264c6a9cbfad8ab1825e4f8f81132a6bf43484dda5eca994c
+Status: install ok installed
+
+Package: zlib
+Version: 1.3
+Depends: vcpkg-cmake
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 5c02e2d92aabb34989638f68dfa3975e78eb9d5ab57b8c0fc07ee5d86533da54
+Description: A compression library
+Status: install ok installed
+
+Package: vcpkg-cmake-config
+Version: 2022-02-06
+Port-Version: 1
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 405e0e16d50d6fa2dc29d929df91560f13c79a0f9135d33a395c64de16abe5e7
+Status: install ok installed
+
+Package: utf8proc
+Version: 2.7.0
+Port-Version: 1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 120192e711a0a5118c2c43fee788b03884c8fb383250a41ad4aa8dbb03b5a990
+Description: Clean C library for processing UTF-8 Unicode data.
+Status: install ok installed
+
+Package: sdl2
+Version: 2.28.5
+Port-Version: 1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 86aa49e6d5df8099955aac5b14f3cc724c15382251fcf8e1f5c21ca2a6ae1fd9
+Description: Simple DirectMedia Layer is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D.
+Status: install ok installed
+
+Package: lodepng
+Version: 2021-12-04
+Port-Version: 1
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Abi: dbd7daa00b894c55bc24d41e4e10077adf4f8e8594f7c891e30b6d44a70fb658
+Description: PNG encoder and decoder in C++
+Status: install ok installed
+
+Package: stb
+Version: 2023-04-11
+Port-Version: 1
+Architecture: x64-windows
+Multi-Arch: same
+Abi: 3b06a075152e7ec1121f18836bc80b4faca05c87cdcc37ba601b9f45df0d60cf
+Description: public domain header-only libraries
+Status: install ok installed
+
+Package: libtcod
+Version: 1.24.0
+Depends: stb, vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-windows
+Multi-Arch: same
+Maintainer: Kyle Benesch <4b796c65+github@gmail.com>
+Abi: 68d9ae4f1dbb991f548b57ebeef2491576114fe7df0d567ba68b516ce653cbc0
+Description: Common algorithms and tools for roguelikes.
+Default-Features: png, sdl, unicode, zlib
+Status: install ok installed
+
+Package: libtcod
+Feature: png
+Depends: lodepng
+Architecture: x64-windows
+Multi-Arch: same
+Description: Support for reading and writing PNG files.  Required to save screenshots and to load tilesets from files.
+Status: install ok installed
+
+Package: libtcod
+Feature: sdl
+Depends: sdl2
+Architecture: x64-windows
+Multi-Arch: same
+Description: Support for SDL2 windows and events with the libtcod context.
+Status: install ok installed
+
+Package: libtcod
+Feature: unicode
+Depends: utf8proc
+Architecture: x64-windows
+Multi-Arch: same
+Description: Support for non-ASCII characters.  Required for text printing functions
+Status: install ok installed
+
+Package: libtcod
+Feature: zlib
+Depends: zlib
+Architecture: x64-windows
+Multi-Arch: same
+Description: Support for REXPaint files and TCODZip archives.
+Status: install ok installed
+

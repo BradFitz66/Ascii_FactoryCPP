@@ -1,0 +1,29 @@
+Detecting compiler hash for triplet x64-windows...
+All requested packages are currently installed.
+Total install time: 1.2 us
+utf8proc provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(unofficial-utf8proc CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE utf8proc)
+
+utf8proc provides pkg-config modules:
+
+    # UTF8 processing
+    libutf8proc
+
+sdl2 provides CMake targets:
+
+    find_package(SDL2 CONFIG REQUIRED)
+    target_link_libraries(main
+        PRIVATE
+        $<TARGET_NAME_IF_EXISTS:SDL2::SDL2main>
+        $<IF:$<TARGET_EXISTS:SDL2::SDL2>,SDL2::SDL2,SDL2::SDL2-static>
+    )
+
+libtcod provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(libtcod CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE libtcod::libtcod)
+
